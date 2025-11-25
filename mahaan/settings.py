@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-y53^-cj2#gx$ayx2e-kdptj0)8%&%$yxsrqqmw+a_9nw1=+g_!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mahaanexports.com', 'www.mahaanexports.com', '31.97.237.142']
+ALLOWED_HOSTS = ['mahaanexports.com', 'www.mahaanexports.com','dash.mahaanexports.com', '31.97.237.142']
 
 
 # Application definition
@@ -123,10 +123,12 @@ USE_I18N = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/mahaan_exports/static/'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/mahaan_exports/media/'
+
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / 'static',   # <-- adjust depending on your folder (see below)
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
