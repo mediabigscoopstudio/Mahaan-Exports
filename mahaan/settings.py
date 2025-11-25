@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-y53^-cj2#gx$ayx2e-kdptj0)8%&%$yxsrqqmw+a_9nw1=+g_!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['mahaanexports.com', 'www.mahaanexports.com', '31.97.237.142']
 
 
 # Application definition
@@ -48,6 +48,7 @@ DEFAULT_HOST = 'main'
 MIDDLEWARE = [
     'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -120,11 +121,10 @@ USE_I18N = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "static",]
-MEDIA_URL = '/media/'  
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/mahaan_exports/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/var/www/mahaan_exports/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
