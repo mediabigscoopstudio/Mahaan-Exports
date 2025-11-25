@@ -1,0 +1,271 @@
+{% extends "main/base.html" %}
+{% block 'title' %}Our Products – Oyster Mushrooms, Moringa Powder, Herbs & Spices | Mahaan Exports{% endblock 'title' %}
+{% block 'meta' %}
+<!-- Primary SEO Meta Tags -->
+<meta name="description" content="Explore Mahaan Exports’ premium product range including Oyster Mushrooms, Moringa Powder, and high-quality Indian herbs & spices. Trusted by global importers for unmatched quality.">
+<meta name="keywords" content="Mahaan Exports products, Oyster Mushroom exporters, Moringa Powder suppliers, Indian herbs exporters, spices exporters India, bulk mushroom export, moringa wholesale">
+<meta name="author" content="Mahaan Exports Pvt Ltd">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mahaanexports.com/products">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/static/main/images/Vector.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/main/images/Vector.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mahaanexports.com/products">
+<meta property="og:title" content="Mahaan Exports – Oyster Mushrooms, Moringa Powder, Herbs & Spices">
+<meta property="og:description" content="Browse our high-quality export products including Oyster Mushrooms, Moringa Powder, herbs, and spices. Quality assured for global markets.">
+<meta property="og:image" content="/static/main/image/brandplate.webp">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://mahaanexports.com/products">
+<meta name="twitter:title" content="Mahaan Exports – Export Product Range">
+<meta name="twitter:description" content="Premium Oyster Mushrooms, Moringa Powder, herbs, and spices sourced from India for global export.">
+<meta name="twitter:image" content="/static/main/image/brandplate.webp">
+
+<!-- Schema.org JSON-LD: Collection of Products -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Products – Mahaan Exports",
+  "url": "https://mahaanexports.com/products",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": "Oyster Mushroom",
+        "image": "https://mahaanexports.com/static/main/image/brandplate.webp",
+        "brand": {
+          "@type": "Brand",
+          "name": "Mahaan Exports"
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "Moringa Powder",
+        "image": "https://mahaanexports.com/static/main/image/brandplate.webp",
+        "brand": {
+          "@type": "Brand",
+          "name": "Mahaan Exports"
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "Herbs & Spices",
+        "image": "https://mahaanexports.com/static/main/image/brandplate.webp",
+        "brand": {
+          "@type": "Brand",
+          "name": "Mahaan Exports"
+        }
+      }
+    ]
+  }
+}
+</script>
+{% endblock 'meta' %}
+
+{% block 'css' %}
+<style>
+  /* In-page product page styles, uses site tokens */
+  :root{
+    --green-1:#2D5016; --green-2:#3A6B35; --cream:#F5E6D3;
+    --accent:#FF8C42; --gold:#FDB833; --radius:12px; --easing:cubic-bezier(.2,.9,.3,1);
+  }
+
+  .products-hero{
+    padding:28px 0;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    justify-content:space-between;
+  }
+  .products-hero .left{flex:1; min-width:260px;}
+  .products-hero .right{flex:0 0 320px; max-width:360px;}
+
+  .filters{
+    margin-top:12px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .filter-btn{
+    padding:8px 12px; border-radius:999px; border:1px solid rgba(45,80,22,0.06);
+    background:transparent; cursor:pointer; font-weight:700; color:var(--green-1);
+  }
+  .filter-btn.active{ background:linear-gradient(90deg,var(--accent),var(--gold)); color:white; border:0; box-shadow:0 8px 20px rgba(253,184,51,0.12); }
+
+  /* Product grid */
+  .catalog-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:18px;
+    margin-top:20px;
+  }
+  .product-card{
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,230,211,0.55));
+    box-shadow:0 12px 30px rgba(45,80,22,0.04);
+    display:flex;
+    flex-direction:column;
+    transition: transform 260ms var(--easing), box-shadow 260ms var(--easing);
+  }
+  .product-card:hover{ transform: translateY(-8px); box-shadow:0 24px 48px rgba(45,80,22,0.08); }
+
+  .product-media{
+    height:220px;
+    background-size:cover;
+    background-position:center;
+  }
+  .product-body{ padding:14px; display:flex; flex-direction:column; gap:10px; }
+  .product-title{ margin:0; font-size:18px; color:var(--green-1); font-weight:900; }
+  .product-desc{ margin:0; color:rgba(43,43,43,0.78); font-size:14px; flex:1; }
+  .product-footer{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:8px; }
+  .chip{ padding:6px 10px; border-radius:999px; font-weight:700; font-size:13px; background: rgba(45,80,22,0.08); color:var(--green-1); }
+
+  /* Small actions */
+  .actions{ display:flex; gap:8px; align-items:center; }
+  .btn-small{ padding:8px 12px; border-radius:10px; text-decoration:none; font-weight:800; font-size:13px; display:inline-flex; align-items:center; gap:8px; }
+  .enquire-btn{ background:linear-gradient(90deg,var(--accent),var(--gold)); color:white; border:0; }
+  .details-btn{ background:transparent; border:1px solid rgba(45,80,22,0.06); color:var(--green-1); }
+
+  /* Responsive */
+  @media(min-width:700px){
+    .catalog-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media(min-width:1000px){
+    .catalog-grid{ grid-template-columns: repeat(3, 1fr); }
+    .products-hero .right{ flex:0 0 420px; max-width:420px; }
+  }
+
+  /* Reveal animation (uses your site's .reveal class) */
+  .reveal { opacity:0; transform: translateY(12px); transition: opacity 520ms var(--easing), transform 520ms var(--easing); }
+  .reveal.in-view{ opacity:1; transform:none; }
+
+  /* lightweight empty state */
+  .empty-state{ text-align:center; padding:40px; color:rgba(43,43,43,0.7); border-radius:12px; background:rgba(255,255,255,0.9); }
+</style>
+{% endblock 'css' %}
+
+{% block 'body' %}
+<main class="container" style="position:relative; z-index:2;">
+
+  <!-- HERO / Filters -->
+  <section class="products-hero reveal">
+    <div class="left">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:56px; height:56px; border-radius:10px;display:grid; place-items:center; color:#fff; font-weight:900;">
+            <img src="/static/main/images/Logo_SEP.png" style="height: 100%; width: 100%;" alt="Mahaan Exports">
+        </div>
+        <div>
+          <div style="font-size:13px; color:var(--green-2); font-weight:800;">Our Catalogue</div>
+          <h1 style="margin:6px 0 0; font-size:26px; color:var(--green-1);">Premium Products — Mushrooms, Herbs & Spices</h1>
+        </div>
+      </div>
+
+      <p style="margin:12px 0 0; color:rgba(43,43,43,0.8); max-width:760px;">
+        Explore our curated range of export-ready produce. Click a category to filter, or enquire directly for pricing, samples and private-label options.
+      </p>
+
+      <div class="filters" aria-label="Product categories" role="tablist" style="margin-top:14px;">
+        <button class="filter-btn active" data-filter="all">All</button>
+        {% for i in categories %}
+          <button class="filter-btn" data-filter="{{i.title}}">{{i.title}}</button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="right card" style="padding:14px;">
+      <h3 style="margin:0 0 8px; color:var(--green-1);">Need help selecting?</h3>
+      <p style="margin:0 0 12px; color:rgba(43,43,43,0.75);">Contact our exports team for custom packs, sample boxes and recurring shipments.</p>
+      <a href="/contact" class="btn" style="display:inline-block;">Request Custom Quote</a>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <section class="reveal" style="margin-top:18px;">
+    <div class="catalog-grid" id="catalogGrid">
+
+      
+      {% for i in products  %}
+        <article class="product-card reveal" data-category="{{i.category.title}}" tabindex="0">
+        <a href="/product/{{i.slug}}" style="text-decoration: none;">
+        <div class="product-media" style="background-image:url('{{i.thumbnail.url}}');"></div>
+        <div class="product-body">
+          <h4 class="product-title">{{i.title}}</h4>
+          <p class="product-desc">{{i.meta_description}}</p>
+          <div class="product-footer">
+            <span class="chip">{{i.category.title}}</span>
+            <div class="actions">
+              <a href="/contact" class="btn-small enquire-btn">Enquire</a>
+              <a href="/product/{{i.slug}}" class="btn-small details-btn">Details</a>
+            </div>
+          </div>
+        </div>
+        </a>
+      </article>
+      {% endfor %}
+
+      
+    <div id="emptyState" class="empty-state" style="display:none; margin-top:16px;">
+      No products found in this category. Try another filter or view <a href="/products">all products</a>.
+    </div>
+  </section>
+
+</main>
+
+{% endblock 'body' %}
+
+{% block 'script' %}
+<script>
+  // Reveal on scroll (simple)
+  (function(){
+    const reveals = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){ entry.target.classList.add('in-view'); observer.unobserve(entry.target); }
+        });
+      }, {threshold: 0.12});
+      reveals.forEach(r => obs.observe(r));
+    } else { reveals.forEach(r => r.classList.add('in-view')); }
+  })();
+
+  // Simple client-side filtering for product grid
+  (function(){
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = Array.from(document.querySelectorAll('.product-card'));
+    const emptyState = document.getElementById('emptyState');
+
+    function setActive(btn){
+      buttons.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        setActive(btn);
+
+        let visible = 0;
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          if(filter === 'all' || cat === filter){
+            card.style.display = '';
+            visible++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        emptyState.style.display = (visible === 0) ? 'block' : 'none';
+      });
+    });
+  })();
+</script>
+{% endblock 'script' %}

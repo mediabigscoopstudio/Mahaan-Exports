@@ -1,0 +1,160 @@
+{% extends "dash/base.html" %}
+{% block 'title' %}Create Article{% endblock 'title' %}
+
+{% block 'css' %}
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+{% endblock 'css' %}
+
+{% block 'body' %}
+<div class="container-fluid">
+    <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+        <div class="flex-grow-1">
+            <h4 class="fs-18 fw-semibold m-0">Create Article</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- ARTICLE FORM -->
+        <div class="col-xl-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">New Article</h5>
+                </div>
+
+                <div class="card-body">
+                    <form class="row g-3" action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Title -->
+                        <div class="col-12">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" name="title" required>
+                        </div>
+
+                        <!-- Meta Title -->
+                        <div class="col-12">
+                            <label class="form-label">Meta Title</label>
+                            <input type="text" class="form-control" name="meta_title">
+                        </div>
+
+                        <!-- Meta Description -->
+                        <div class="col-12">
+                            <label class="form-label">Meta Description</label>
+                            <textarea class="form-control" rows="2" name="meta_description"></textarea>
+                        </div>
+
+                        <!-- Meta Keywords -->
+                        <div class="col-12">
+                            <label class="form-label">Meta Keywords</label>
+                            <input type="text" class="form-control" name="meta_keywords" placeholder="comma, separated, keywords">
+                        </div>
+
+                        <!-- Thumbnail -->
+                        <div class="col-12">
+                            <label class="form-label">Thumbnail Image</label>
+                            <input type="file" class="form-control" name="thumbnail" accept="image/*" required>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="col-12">
+                            <label class="form-label">Content</label>
+
+                            <!-- Toolbar -->
+                            <div id="quill-toolbar">
+                                <span class="ql-formats">
+                                    <button class="ql-bold"></button>
+                                    <button class="ql-italic"></button>
+                                    <button class="ql-underline"></button>
+                                </span>
+                                <span class="ql-formats">
+                                    <button class="ql-list" value="ordered"></button>
+                                    <button class="ql-list" value="bullet"></button>
+                                    <button class="ql-link"></button>
+                                    <button class="ql-image"></button>
+                                </span>
+                            </div>
+
+                            <!-- Editor -->
+                            <div id="editor" style="height: 300px;"></div>
+                            <input type="hidden" id="hiddenContentInput" name="content">
+                        </div>
+
+
+                        <!-- Submit -->
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Save Article</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- HELP DESK -->
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Help Desk</h5>
+                </div>
+
+                <div class="card-body">
+                    <p class="text-muted">
+                        Fill in the article details and use the editor to write content.  
+                        Meta fields help improve SEO. Thumbnail is required.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Quill -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+var csrfToken = "{{ csrf_token }}";
+
+var quill = new Quill('#editor', {
+  theme: 'snow',
+  placeholder: 'Write your article...',
+  modules: {
+    toolbar: {
+      container: '#quill-toolbar',
+      handlers: {
+        'image': function() {
+          const input = document.createElement('input');
+          input.setAttribute('type', 'file');
+          input.setAttribute('accept', 'image/*');
+          input.click();
+
+          input.onchange = async () => {
+            const file = input.files[0];
+            if (file) {
+              const formData = new FormData();
+              formData.append('image', file);
+
+              const res = await fetch('/upload_quill_image/', {
+                method: 'POST',
+                headers: { 'X-CSRFToken': csrfToken },
+                body: formData
+              });
+
+              const data = await res.json();
+              if (data.url) {
+                const range = quill.getSelection(true);
+                quill.insertEmbed(range.index, 'image', data.url);
+              }
+            }
+          };
+        }
+      }
+    }
+  }
+});
+
+// Move editor content to hidden input
+document.querySelector('form').onsubmit = function () {
+  document.getElementById('hiddenContentInput').value = quill.root.innerHTML;
+};
+</script>
+{% endblock 'body' %}

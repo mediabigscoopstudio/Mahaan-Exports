@@ -1,0 +1,45 @@
+{% extends "dash/base.html" %}
+{% block 'title' %}Add Category{% endblock 'title' %}
+
+{% block 'body' %}
+<div class="container-fluid">
+    <h4 class="py-3">Create Category</h4>
+
+    <div class="card">
+        <div class="card-body">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Category Title</label>
+                    <input type="text" class="form-control" name="title" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Meta Title</label>
+                    <input type="text" class="form-control" name="meta_title">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Meta Description</label>
+                    <textarea class="form-control" rows="2" name="meta_description"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Meta Keywords</label>
+                    <input type="text" class="form-control" name="meta_keywords" placeholder="comma, separated, keywords">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Content</label>
+                    <textarea class="form-control" rows="4" name="content"></textarea>
+                </div>
+
+                <button class="btn btn-primary">Save Category</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock 'body' %}

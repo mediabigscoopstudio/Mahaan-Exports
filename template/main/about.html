@@ -1,0 +1,349 @@
+{% extends "main/base.html" %}
+{% block 'title' %}About Mahaan Exports – India’s Trusted Exporter of Oyster Mushrooms & Moringa Powder{% endblock 'title' %}
+{% block 'meta' %}
+<!-- Primary SEO Meta Tags -->
+<meta name="description" content="Learn about Mahaan Exports – a leading exporter of high-quality Oyster Mushrooms, Moringa Powder, herbs, and spices from India. Discover our story, values, and global commitment to quality.">
+<meta name="keywords" content="About Mahaan Exports, Indian Mushroom Exporters, Oyster Mushroom Export, About Moringa exporters India, Herbs and spices exporters, Mahaan Exports company profile">
+<meta name="author" content="Mahaan Exports Pvt Ltd">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mahaanexports.com/about-us">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/static/main/images/Vector.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/main/images/Vector.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mahaanexports.com/about-us">
+<meta property="og:title" content="About Mahaan Exports – Global Suppliers of Oyster Mushroom & Moringa Powder">
+<meta property="og:description" content="Know more about Mahaan Exports, our mission, values, and trusted export services for Oyster Mushrooms, Moringa Powder, herbs, and spices.">
+<meta property="og:image" content="/static/main/image/brandplate.webp">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://mahaanexports.com/about-us">
+<meta name="twitter:title" content="About Mahaan Exports – Trusted Indian Exporters">
+<meta name="twitter:description" content="Get to know Mahaan Exports — India’s reliable supplier of Oyster Mushrooms, Moringa Powder, herbs, and spices.">
+<meta name="twitter:image" content="/static/main/image/brandplate.webp">
+
+<!-- Schema.org JSON-LD: About Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Mahaan Exports",
+  "url": "https://mahaanexports.com/about-us",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Mahaan Exports Pvt Ltd",
+    "url": "https://mahaanexports.com/",
+    "logo": "https://mahaanexports.com/static/main/images/Vector.png",
+    "description": "Mahaan Exports is a leading Indian exporter of Oyster Mushrooms, Moringa Powder, herbs, and spices, committed to delivering premium quality worldwide.",
+    "image": "https://mahaanexports.com/static/main/image/brandplate.webp",
+    "makesOffer": [
+      {
+        "@type": "Product",
+        "name": "Oyster Mushroom"
+      },
+      {
+        "@type": "Product",
+        "name": "Moringa Powder"
+      }
+    ]
+  }
+}
+</script>
+
+{% endblock 'meta' %}
+
+{% block 'css' %}
+<style>
+/* About page specific styles — keeps look consistent with site */
+:root{
+  --green-1:#2D5016; --green-2:#3A6B35; --cream:#F5E6D3; --accent:#FF8C42;
+  --radius:12px; --container-max:1200px; --ease:cubic-bezier(.2,.9,.3,1);
+}
+.container{ width:calc(100% - 32px); max-width:var(--container-max); margin:0 auto; }
+.section-title h2{ margin:0 0 8px; color:var(--green-1); font-size:22px; font-weight:800; }
+.section-sub{ color:rgba(43,43,43,0.75); margin:6px 0 0; }
+
+/* Grid helpers */
+.grid-2{ display:grid; grid-template-columns:1fr; gap:20px; }
+.grid-3{ display:grid; grid-template-columns:1fr; gap:20px; }
+@media(min-width:900px){ .grid-2{ grid-template-columns: 1fr 420px; } .grid-3{ grid-template-columns: repeat(3,1fr); } }
+
+/* Cards & icons */
+.card{ background:rgba(255,255,255,0.96); border-radius:var(--radius); padding:18px; box-shadow:0 10px 30px rgba(45,80,22,0.04); }
+.icon-card{ display:flex; gap:14px; align-items:flex-start; background:rgba(255,255,255,0.96); padding:12px; border-radius:12px; box-shadow:0 6px 18px rgba(45,80,22,0.03); }
+.ic{ min-width:56px; width:56px; height:56px; border-radius:10px; display:grid; place-items:center; color:#fff; font-size:18px; background:linear-gradient(135deg,var(--green-2),var(--green-1)); }
+
+/* Facility card */
+.facility-card{ border-radius:12px; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(245,230,211,0.4)); box-shadow:0 8px 24px rgba(45,80,22,0.04); display:flex; flex-direction:column; }
+.facility-media{ height:160px; background-size:cover; background-position:center; }
+
+/* Team */
+.team-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
+.team-member{ text-align:center; padding:14px; border-radius:12px; background:rgba(255,255,255,0.98); box-shadow:0 8px 20px rgba(45,80,22,0.03); }
+.team-member img{ width:100px; height:100px; border-radius:50%; object-fit:cover; }
+
+/* CTA band */
+.cta-band{ margin-top:26px; padding:20px; border-radius:12px; background:linear-gradient(90deg, rgba(255,140,66,0.08), rgba(253,184,51,0.06)); display:flex; gap:12px; align-items:center; justify-content:space-between; box-shadow:0 10px 30px rgba(45,80,22,0.04); }
+
+/* Misc */
+.chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+.chip{ padding:6px 10px; border-radius:999px; background:rgba(45,80,22,0.08); color:var(--green-1); font-weight:700; }
+
+.reveal{ opacity:0; transform:translateY(12px); transition:opacity 520ms var(--ease), transform 520ms var(--ease); }
+.reveal.in{ opacity:1; transform:none; }
+
+@media(min-width:1200px){ .team-grid{ grid-template-columns: repeat(3,1fr); } .facility-grid{ grid-template-columns: repeat(2,1fr); } }
+</style>
+{% endblock 'css' %}
+
+{% block 'body' %}
+<main class="container" style="position:relative; z-index:2;">
+
+  <!-- COMPANY INTRO -->
+  <section id="company-intro" class="reveal" style="margin-top:36px;">
+    <div class="section-title"><h2>About Mahaan Exports</h2></div>
+    <p class="section-sub">
+      Mahaan Exports is a family-operated agricultural export house providing premium oyster mushrooms,
+      organic herbs, specialty spices and fresh farm produce to international buyers. Our operations combine
+      time-tested cultivation with modern post-harvest handling to deliver traceable, export-ready produce
+      with consistent quality.
+    </p>
+
+    <div style="margin-top:18px;" class="grid-2">
+      <div class="card">
+        <h3 style="margin-top:0;">Company Introduction</h3>
+        <p>Founded to bridge smallholder quality farms with global markets, Mahaan Exports focuses on
+          sustainable cultivation, hygienic processing and export-compliant packing. We partner with
+          chefs, retailers and distributors to supply seasonal and year-round crops with dependable lead times.</p>
+
+        <h4 style="margin-top:12px;">Capabilities</h4>
+        <ul>
+          <li>HACCP-ready packing & cold-chain workflows</li>
+          <li>Bulk & retail packaging (clamshells, MAP, kraft pouches, jars)</li>
+          <li>Custom private-label options and B2B programs</li>
+          <li>Sample management & export documentation handling</li>
+        </ul>
+
+        <div class="chips" aria-hidden="true" style="margin-top:12px;">
+          <span class="chip">Export-ready</span>
+          <span class="chip">Traceable</span>
+          <span class="chip">HACCP</span>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3 style="margin-top:0;">Mission & Vision</h3>
+
+        <div style="margin-top:6px;">
+          <strong>Mission</strong>
+          <p style="margin:6px 0 12px;">To deliver fresh, premium and responsibly grown produce to global kitchens,
+            supporting growers and delighting customers with reliable supply and clear traceability.</p>
+
+          <strong>Vision</strong>
+          <p style="margin:6px 0 0;">To be recognized as a trusted partner for international buyers seeking high-quality,
+            ethically sourced and consistently supplied fresh produce and culinary ingredients.</p>
+        </div>
+
+        <div style="margin-top:18px;">
+          <a href="#contact" style="display:inline-block; padding:10px 14px; border-radius:10px; background:linear-gradient(90deg,var(--accent),#FDB833); color:white; text-decoration:none; font-weight:700;">Request a Quote</a>
+          <a href="/products" style="display:inline-block; padding:10px 12px; margin-left:8px; border-radius:10px; border:1px solid rgba(45,80,22,0.06); color:var(--green-1); text-decoration:none; font-weight:700;">View Products</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- OUR VALUES -->
+  <section id="values" class="reveal" style="margin-top:36px;">
+    <div class="section-title"><h2>Our Values</h2></div>
+    <p class="section-sub">Values that guide every choice — from soil to shipment.</p>
+
+    <div class="grid-3" style="margin-top:12px;">
+      <div class="icon-card">
+        <div class="ic"><i class="fa fa-leaf"></i></div>
+        <div>
+          <h3 style="margin:0 0 6px;">Sustainability</h3>
+          <p style="margin:0;">Responsible substrate sourcing, efficient water use and minimal waste practices.</p>
+        </div>
+      </div>
+
+      <div class="icon-card">
+        <div class="ic" style="background:linear-gradient(135deg,#FF8C42,#FDB833)"><i class="fa fa-check-circle"></i></div>
+        <div>
+          <h3 style="margin:0 0 6px;">Quality First</h3>
+          <p style="margin:0;">Consistent grading, lab checks and batch standardization for every shipment.</p>
+        </div>
+      </div>
+
+      <div class="icon-card">
+        <div class="ic" style="background:linear-gradient(135deg,#FF6B6B,#FF8C42)"><i class="fa fa-handshake"></i></div>
+        <div>
+          <h3 style="margin:0 0 6px;">Partnership</h3>
+          <p style="margin:0;">Transparent terms, dependable programs and long-term relationships with buyers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFRASTRUCTURE & FACILITIES -->
+  <section id="facilities" class="reveal" style="margin-top:36px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div class="section-title"><h2>Infrastructure & Facilities</h2></div>
+      <div style="color:rgba(43,43,43,0.7);">Climate-controlled packing • Cold storage • QA lab</div>
+    </div>
+
+    <div class="facility-grid" style="margin-top:12px;">
+      <div class="facility-card">
+        <div class="facility-media" style="background-image:url('/static/main/images/facilities/1.webp');height: 500px;"></div>
+        <div style="padding:12px;">
+          <h3 style="margin:0 0 8px;">Packing & Sorting Unit</h3>
+          <p style="margin:0;">Automated weighing, hygienic sorting and modified atmosphere packaging to maximise shelf-life.</p>
+        </div>
+      </div>
+      <br>
+      <div class="facility-card">
+        <div class="facility-media" style="background-image:url('/static/main/images/facilities/2.webp');height: 500px;"></div>
+        <div style="padding:12px;">
+          <h3 style="margin:0 0 8px;">Cold Storage & Handling</h3>
+          <p style="margin:0;">Temperature-controlled workflows from harvest to shipping for maximum freshness on arrival.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGING & QUALITY ASSURANCE -->
+  <section id="packaging" class="reveal" style="margin-top:36px;">
+    <div class="section-title"><h2>Packaging & Quality Assurance</h2></div>
+    <div style="margin-top:12px;" class="card">
+      <p style="margin:0;">We offer tailored packaging for each product category — clamshells and punnets for fresh produce, kraft and resealable pouches for powders and dried herbs, and jars for value-added products. Every batch undergoes visual inspections, weight checks and sampling when required by destination markets. Our packaging choices prioritise breathability, protection and presentation for long transit times.</p>
+
+      <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap;" class="reveal">
+        <div style="padding:10px 12px; border-radius:10px; background:rgba(45,80,22,0.06); font-weight:700; color:var(--green-1);">MAP Packaging</div>
+        <div style="padding:10px 12px; border-radius:10px; background:rgba(45,80,22,0.06); font-weight:700; color:var(--green-1);">Clamshells & Punnets</div>
+        <div style="padding:10px 12px; border-radius:10px; background:rgba(45,80,22,0.06); font-weight:700; color:var(--green-1);">Kraft Pouches</div>
+        <div style="padding:10px 12px; border-radius:10px; background:rgba(45,80,22,0.06); font-weight:700; color:var(--green-1);">Private-label</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS & COMPLIANCE -->
+  <section id="certs" class="reveal" style="margin-top:36px;">
+    <div class="section-title"><h2>Certifications & Compliance</h2></div>
+    <p class="section-sub">We maintain export documentation and quality systems tailored to our buyers’ destination markets. Certificates and lab reports are available on request.</p>
+
+    <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap;">
+      <div style="padding:10px 12px; border-radius:10px; background:rgba(45,80,22,0.04); display:flex; gap:8px; align-items:center;">
+        <i class="fa fa-certificate" style="color:var(--green-1)"></i>
+        <div><strong>HACCP Ready</strong></div>
+      </div>
+
+      <div style="padding:10px 12px; border-radius:10px; background:rgba(45,80,22,0.04); display:flex; gap:8px; align-items:center;">
+        <i class="fa fa-vial" style="color:var(--green-1)"></i>
+        <div><strong>Lab Tested</strong></div>
+      </div>
+
+      <div style="padding:10px 12px; border-radius:10px; background:rgba(45,80,22,0.04); display:flex; gap:8px; align-items:center;">
+        <i class="fa fa-file-alt" style="color:var(--green-1)"></i>
+        <div><strong>Export Documentation</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP TEAM -->
+  <section id="team" class="reveal" style="margin-top:36px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div class="section-title"><h2>Leadership Team</h2></div>
+      <div style="color:rgba(43,43,43,0.7);">Experienced management for global trade</div>
+    </div>
+
+    <div class="team-grid" style="margin-top:12px;">
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Sourav Singh">
+        <h3 style="margin:8px 0 2px;">Sourav Singh</h3>
+        <div style="font-style:italic; color:rgba(43,43,43,0.75);">Founder & CEO</div>
+        <p style="margin-top:8px;">15+ years in fresh-produce exports and supply chain operations.</p>
+      </div>
+
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/women/47.jpg" alt="Meera Patel">
+        <h3 style="margin:8px 0 2px;">Meera Patel</h3>
+        <div style="font-style:italic; color:rgba(43,43,43,0.75);">Head — Operations & QA</div>
+        <p style="margin-top:8px;">Leads packing operations, QA and compliance.</p>
+      </div>
+
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Arjun Desai">
+        <h3 style="margin:8px 0 2px;">Arjun Desai</h3>
+        <div style="font-style:italic; color:rgba(43,43,43,0.75);">Head — Exports</div>
+        <p style="margin-top:8px;">Manages international sales, logistics and buyer relationships.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT US -->
+  <section id="contact" class="reveal" style="margin-top:36px; margin-bottom:40px;">
+    <div class="section-title"><h2>Contact & Get a Quote</h2></div>
+    <div class="card" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <div style="min-width:120px;">
+          <img src="/static/main/images/Logo_SEP.png" alt="Mahaan Exports Logo" style="width:110px; height:auto; border-radius:8px;">
+        </div>
+
+        <div>
+          <p style="margin:0;"><strong>Exports Team • Mahaan Exports</strong><br>
+            Phone: +91 85539 79617<br>
+            Email: <a href="mailto:info@mahaanexports.com" style="color: #2D5016; text-decoration: none;">info@mahaanexports.com</a>
+          </p>
+          <div style="margin-top:8px;">
+            <a href="/contact" style="padding:8px 12px; border-radius:10px; background:linear-gradient(90deg,var(--accent),#FDB833); color:white; text-decoration:none; font-weight:700;">Request Quote</a>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin:0; color:rgba(43,43,43,0.8);">We typically respond within 24–48 business hours. For urgent export queries, please call the number above.</p>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="reveal" style="margin-top:24px;">
+    <div class="cta-band">
+      <div>
+        <h3 style="margin:0;">Ready to partner with Mahaan Exports?</h3>
+        <p style="margin:6px 0 0; color:rgba(43,43,43,0.8);">Request samples, pricing or a custom packing plan for your market.</p>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <a href="#contact" style="padding:10px 14px; border-radius:10px; background:linear-gradient(90deg,var(--accent),#FDB833); color:white; text-decoration:none; font-weight:700;">Request a Quote</a>
+        <a href="/products" style="padding:10px 12px; border-radius:10px; border:1px solid rgba(45,80,22,0.06); text-decoration:none; color:var(--green-1); font-weight:700;">See Products</a>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- Minimal JS -->
+<script>
+  // Insert current year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Reveal animations
+  (function(){
+    const elems = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(e => {
+          if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); }
+        });
+      }, {threshold:0.12});
+      elems.forEach(el => obs.observe(el));
+    } else { elems.forEach(el => el.classList.add('in')); }
+  })();
+</script>
+{% endblock 'body' %}
+
+{% block 'script' %}
+<!-- page-level scripts (none additional) -->
+{% endblock 'script' %}

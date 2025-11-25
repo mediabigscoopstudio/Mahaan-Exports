@@ -1,0 +1,167 @@
+<!doctype html>
+<!--
+  Mahaan Exports - Homepage (Single HTML file)
+  Stack: Static HTML + Embedded CSS + Minimal JS
+  Design spec followed:
+    - Color palette: Forest greens, cream/beige, warm orange, coral, golden yellow
+    - Typography: Playfair Display for all text (from Google Fonts)
+    - Mobile-first responsive design
+    - Organic shapes, subtle background patterns (low opacity)
+    - Rounded corners (12px) for cards & buttons
+    - Smooth scroll, fade-in on scroll, hover effects
+    - No heavy JS libraries; Font Awesome CDN used for icons
+  Notes: Replace image URLs with your own hosted images (recommended for production).
+-->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block 'title' %}{% endblock 'title' %}</title>
+  {% block 'meta' %}{% endblock 'meta' %}
+  <!-- Tex Gyre Bonum Font -->
+  <link href="https://fonts.cdnfonts.com/css/tex-gyre-bonum" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-pbQ6nYk1+5xKd39rNQj1q7o/5j1KfZlYVxS+qg7G6zj2lVq2x1k6i3rJk1m1q0y3yXq6G2xZ9cX1qz4P5Yw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!--Base File CSS-->
+  <link rel="stylesheet" href="/static/main/css/main.css">
+  {% block 'css' %}
+    
+  {% endblock 'css' %}
+</head>
+<body>
+
+  <!-- subtle layered pattern background -->
+  <div class="bg-pattern" aria-hidden="true"></div>
+
+  <!-- Header / Nav -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a class="brand" href="/" aria-label="Mahaan Exports — Home">
+        <div class="logo-mark" aria-hidden="true">
+            <img src="/static/main/images/Logo_SEP.png" alt="Mahaan Exports" style="width: 50px;">
+        </div>
+        <div class="brand-info">
+          <div class="brand-name">Mahaan Exports</div>
+          <div class="brand-tag">Naturally Grown. Globally Delivered.</div>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/products">Products</a>
+        <a href="/articles">Article</a>
+        <a href="/contact">Contact</a>
+      </nav>
+
+      <div class="right-group">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" title="Menu">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="nav-cta">
+          <a class="btn" href="/contact"><i class="fa fa-envelope"></i> Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile dropdown (hidden by default) -->
+    <div id="mobileMenu" style="display:none; padding:8px 16px; border-top:1px solid rgba(45,80,22,0.04); background:rgba(245,230,211,0.6);">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/products">Products</a>
+        <a href="/services">Export Services</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </header>
+  <!-- Main -->
+  <main id="home" style="position:relative; z-index:2;">
+  {% block 'body' %}{% endblock 'body' %}
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+        <div>
+          <div style="font-weight:900; font-size:18px; color:var(--green-forest-1);">Mahaan Exports</div>
+          <div style="font-size:14px; color:rgba(43,43,43,0.7);">Naturally Grown. Globally Delivered.</div>
+        </div>
+
+        <div style="display:flex; gap:18px; align-items:center;">
+          <div style="text-align:right;">
+            <div style="font-weight:700; color:var(--green-forest-1);">Contact</div>
+            <div style="font-size:14px; color:rgba(43,43,43,0.75);">+91 85539 79617<br>info@mahaanexports.com</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; margin-top:12px;">
+        <div style="font-size:14px; color:rgba(43,43,43,0.7);">© <span id="year"></span> Mahaan Exports. All rights reserved.</div>
+
+        <div style="display:flex; gap:12px; align-items:center;">
+          <a href="/" style="text-decoration:none; color:var(--green-forest-1);">Home</a>
+          <a href="/about" style="text-decoration:none; color:var(--green-forest-1);">About</a>
+          <a href="/contact" style="text-decoration:none; color:var(--green-forest-1);">Contact</a>
+          <a href="/terms" style="text-decoration:none; color:var(--green-forest-1);">Terms & Conditions</a>
+          <a href="/privacy" style="text-decoration:none; color:var(--green-forest-1);">Privacy Policy</a>
+          <a href="/sitemap.xml" style="text-decoration:none; color:var(--green-forest-1);">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Minimal JavaScript: mobile menu toggle + scroll reveal (IntersectionObserver) -->
+  <script>
+    // Insert current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    (function(){
+      const btn = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if(btn){
+        btn.addEventListener('click', function(){
+          const visible = mobileMenu.style.display === 'block';
+          mobileMenu.style.display = visible ? 'none' : 'block';
+          btn.setAttribute('aria-expanded', !visible);
+        });
+      }
+    })();
+
+    // Scroll reveal using IntersectionObserver (lightweight)
+    (function(){
+      const revealElems = document.querySelectorAll('.reveal');
+      if('IntersectionObserver' in window && revealElems.length){
+        const obs = new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){
+              entry.target.classList.add('in-view');
+              // if you want the animation only once:
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealElems.forEach(el => obs.observe(el));
+      } else {
+        // fallback: make everything visible
+        revealElems.forEach(el => el.classList.add('in-view'));
+      }
+    })();
+
+    // Optional: smooth close of mobile menu when a link is clicked (mobile)
+    document.querySelectorAll('#mobileMenu a, header .nav-links a').forEach(a=>{
+      a.addEventListener('click', ()=> {
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu && mobileMenu.style.display === 'block') mobileMenu.style.display = 'none';
+      });
+    });
+  </script>
+  {% block 'script' %}{% endblock 'script' %}
+</body>
+</html>

@@ -1,0 +1,325 @@
+{% extends "main/base.html" %}
+{% block 'title' %}{{data.title}}{% endblock 'title' %}
+{% block 'meta' %}
+<!-- Primary SEO Meta Tags -->
+<meta name="description" content="{{data.meta_description}}">
+<meta name="keywords" content="{{data.meta_keywords}}">
+<meta name="author" content="Mahaan Exports Pvt Ltd">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mahaanexports.com/article/{{data.slug}}">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/static/main/images/Vector.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/main/images/Vector.png">
+
+<!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mahaanexports.com/">
+<meta property="og:title" content="{{data.meta_title}}">
+<meta property="og:description" content="{{data.meta_description}}">
+<meta property="og:image" content="/static/main/image/brandplate.webp">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://mahaanexports.com/">
+<meta name="twitter:title" content="{{data.meta_title}}">
+<meta name="twitter:description" content="{{data.meta_description}}">
+<meta name="twitter:image" content="https://mahaanexports.com/media/{{data.thumbnail}}">
+
+<!-- Schema.org JSON-LD: Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Mahaan Exports Pvt Ltd",
+  "url": "https://mahaanexports.com/",
+  "logo": "https://mahaanexports.com/static/main/images/Vector.png",
+  "description": "Mahaan Exports is a leading exporter of Oyster Mushrooms, Moringa Powder, herbs, and spices from India.",
+  "sameAs": [],
+  "foundingDate": "2025-11-22",
+  "image": "https://mahaanexports.com/media/{{data.thumbnail}}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Mahaan Exports",
+    "logo": "https://mahaanexports.com/static/main/images/Vector.png"
+  },
+  "makesOffer": [
+    {
+      "@type": "Product",
+      "name": "Oyster Mushroom",
+      "image": "https://mahaanexports.com/static/main/image/brandplate.webp"
+    },
+    {
+      "@type": "Product",
+      "name": "Moringa Powder",
+      "image": "https://mahaanexports.com/static/main/image/brandplate.webp"
+    }
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mahaanexports.com/"
+  }
+}
+</script>
+{% endblock 'meta' %}
+{% block 'css' %}
+<style>
+
+  .product-page{
+    margin-top:40px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+  }
+
+  /* LEFT IMAGE BLOCK */
+  .product-gallery{
+    flex:1;
+    min-width:350px;
+  }
+
+  .main-image{
+    width:100%;
+    height:480px;
+    border-radius:14px;
+    background-size:cover;
+    background-position:center;
+    box-shadow:0 10px 28px rgba(0,0,0,0.08);
+  }
+
+  .thumbnail-row{
+    margin-top:12px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .thumb{
+    width:80px;
+    height:80px;
+    border-radius:8px;
+    background-size:cover;
+    background-position:center;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:0.2s;
+  }
+  .thumb:hover{
+    border-color:#FF8C42;
+  }
+
+  /* RIGHT INFO BLOCK */
+  .product-info{
+    flex:1;
+    min-width:350px;
+  }
+
+  .product-info h1{
+    margin:0;
+    color:#2D5016;
+    font-size:32px;
+    font-weight:900;
+  }
+
+  .sub{
+    margin-top:6px;
+    color:#3A6B35;
+    font-weight:700;
+  }
+
+  .highlights{
+    margin-top:18px;
+    padding-left:18px;
+    line-height:1.6;
+    color:#444;
+  }
+
+  .spec-box{
+    margin-top:20px;
+    padding:16px;
+    border-radius:12px;
+    background:white;
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  }
+
+  .spec-box h3{
+    margin-top:0;
+    color:#2D5016;
+  }
+
+  /* ENQUIRY FORM */
+  .enquiry-box{
+    margin-top:40px;
+    padding:18px;
+    background:rgba(255,255,255,0.9);
+    border-radius:14px;
+    box-shadow:0 10px 28px rgba(0,0,0,0.08);
+  }
+
+  .enquiry-box h3{
+    color:#2D5016;
+    margin-bottom:8px;
+  }
+
+  .enquiry-box label{
+    font-weight:700;
+    margin-top:6px;
+  }
+
+  .enquiry-box input,
+  .enquiry-box textarea{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:1px solid rgba(45,80,22,0.2);
+    margin-top:4px;
+    font-family:inherit;
+  }
+
+  .similar-title{
+    margin-top:50px;
+    margin-bottom:20px;
+    font-size:26px;
+    font-weight:900;
+    color:#2D5016;
+  }
+
+  .similar-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  @media(min-width:700px){
+    .similar-grid{ grid-template-columns:1fr 1fr 1fr; }
+  }
+
+  .similar-card{
+    border-radius:12px;
+    overflow:hidden;
+    background:white;
+    box-shadow:0 8px 28px rgba(0,0,0,0.06);
+  }
+
+  .similar-img{
+    height:300px;
+    background-size:cover;
+    background-position:center;
+  }
+
+  .similar-card div{
+    padding:12px;
+  }
+
+  .btn-primary{
+    display:inline-block;
+    padding:10px 16px;
+    background:linear-gradient(90deg,#FF8C42,#FDB833);
+    border-radius:12px;
+    font-weight:800;
+    color:white;
+    text-decoration:none;
+  }
+
+</style>
+{% endblock 'css' %}
+
+{% block 'body' %}
+
+<section class="container">
+
+  <!-- PRODUCT PAGE -->
+  <div class="product-page">
+
+    <!-- LEFT GALLERY -->
+    <div class="product-gallery">
+
+      <!-- MAIN IMAGE -->
+      <div id="mainImage"
+        class="main-image"
+        style="background-image:url('{{data.thumbnail.url}}');">
+      </div>
+       
+      <h2 style="color: #2D5016;">About {{data.title}}</h2>
+      <p>{{data.content}}</p>
+
+    </div>
+
+    <!-- RIGHT INFORMATION -->
+    <div class="product-info">
+
+      <h1>{{data.title}}</h1>
+      <div class="sub">Fresh • Organic • Export Grade</div>
+
+      <div class="spec-box">
+        <h3>Specifications</h3>
+        <p><strong>{{data.spec1heading}}:</strong> {{data.spec1answer}}</p>
+        <p><strong>{{data.spec2heading}}:</strong> {{data.spec2answer}}</p>
+        <p><strong>{{data.spec3heading}}:</strong> {{data.spec3answer}}</p>
+        <p><strong>{{data.spec4heading}}:</strong> {{data.spec4answer}}</p>
+        <p><strong>{{data.spec5heading}}:</strong> {{data.spec5answer}}</p>
+        
+      </div>
+
+      <!-- ENQUIRY BOX -->
+      <div class="enquiry-box">
+        <h3>Request More Info / Export Quote</h3>
+
+        <form method="POST" action="/enq_form" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="product_name" value="Pearl Oyster Mushroom">
+
+          <label>Full Name</label>
+          <input type="text" name="full_name" required>
+
+          <label>Email Address</label>
+          <input type="email" name="email" required>
+
+          <label>Whatsapp / Phone Number</label>
+          <input type="text" name="phone" required>
+          <input type="hidden" value="{{data.title}}" name="category" >
+
+          <label>Your Requirements</label>
+          <textarea name="message" rows="4" required placeholder="Order qty, destination country, packing format..."></textarea>
+
+          <button class="btn-primary" style="margin-top:12px;">Submit Enquiry</button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- SIMILAR PRODUCTS SECTION -->
+  <h2 class="similar-title">More From This Category</h2>
+
+  <div class="similar-grid">
+
+    
+    {% for i in others %}
+      <div class="similar-card" style="text-decoration: none;">
+        <a href="/product/{{i.slug}}" style="text-decoration: none;">
+      <div class="similar-img" style="background-image:url('{{i.thumbnail.url}}');"></div>
+      <div>
+        <h4 style="color: #2D5016;">{{i.title}}</h4>
+        <p style="text-decoration: none;color: #2D5016;">{{i.meta_description}}</p>
+        <a class="btn-primary" href="/product/{{i.slug}}" >View Product</a>
+      </div>
+      </a>
+    </div>
+    {% endfor %}
+
+  </div>
+
+</section>
+
+{% endblock 'body' %}
+
+{% block 'script' %}
+<script>
+function switchImg(el){
+  document.getElementById("mainImage").style.backgroundImage = el.style.backgroundImage;
+}
+</script>
+{% endblock 'script' %}

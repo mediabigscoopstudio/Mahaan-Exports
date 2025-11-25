@@ -1,0 +1,236 @@
+{% extends "main/base.html" %}
+{% block 'title' %}Articles & Insights – Oyster Mushroom, Moringa Powder & Export Industry | Mahaan Exports{% endblock 'title' %}
+{% block 'meta' %}
+<!-- Primary SEO Meta Tags -->
+<meta name="description" content="Read expert articles and insights from Mahaan Exports on Oyster Mushrooms, Moringa Powder, herbs, spices, and the global export industry. Stay informed with high-quality industry knowledge.">
+<meta name="keywords" content="Mahaan Exports articles, export industry insights, Oyster Mushroom blog, Moringa Powder guide, Indian export tips, herbs spices articles, agro export news">
+<meta name="author" content="Mahaan Exports Pvt Ltd">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mahaanexports.com/articles">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/static/main/images/Vector.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/main/images/Vector.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mahaanexports.com/articles">
+<meta property="og:title" content="Mahaan Exports – Articles & Industry Insights">
+<meta property="og:description" content="Explore expert articles on mushroom exports, moringa powder, herbs, spices, and global export industry trends.">
+<meta property="og:image" content="/static/main/image/brandplate.webp">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://mahaanexports.com/articles">
+<meta name="twitter:title" content="Articles & Insights – Mahaan Exports">
+<meta name="twitter:description" content="Latest blogs and export industry insights on Oyster Mushrooms, Moringa Powder, herbs, and spices.">
+<meta name="twitter:image" content="/static/main/image/brandplate.webp">
+
+<!-- Schema.org JSON-LD: Article Collection -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Articles & Insights – Mahaan Exports",
+  "url": "https://mahaanexports.com/articles",
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Oyster Mushroom Export"
+    },
+    {
+      "@type": "Thing",
+      "name": "Moringa Powder Export"
+    },
+    {
+      "@type": "Thing",
+      "name": "Herbs & Spices Export"
+    },
+    {
+      "@type": "Thing",
+      "name": "Agro Export Industry"
+    }
+  ],
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListOrder": "Descending",
+    "itemListElement": []
+  }
+}
+</script>
+{% endblock 'meta' %}
+{% block 'css' %}
+<style>
+
+:root{
+  --green-1:#2D5016;
+  --green-2:#3A6B35;
+  --cream:#F5E6D3;
+  --accent:#FF8C42;
+  --gold:#FDB833;
+  --radius:14px;
+}
+
+/* HERO */
+.articles-hero{
+  text-align:center;
+  padding:60px 0 40px;
+}
+.articles-hero h1{
+  margin:0;
+  font-size:42px;
+  font-weight:900;
+  color:var(--green-1);
+}
+.articles-hero p{
+  margin-top:10px;
+  color:#444;
+  font-size:16px;
+  max-width:620px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* FILTERS */
+.filters{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:28px;
+  flex-wrap:wrap;
+}
+.filter-btn{
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,0.05);
+  background:white;
+  cursor:pointer;
+  font-weight:700;
+  color:var(--green-1);
+  transition:0.2s;
+}
+.filter-btn:hover{
+  background:var(--accent);
+  color:white;
+}
+
+/* ARTICLE GRID */
+.articles-grid{
+  margin-top:40px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:24px;
+}
+@media(min-width:700px){
+  .articles-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media(min-width:1100px){
+  .articles-grid{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+}
+
+.article-card{
+  background:white;
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 10px 26px rgba(0,0,0,0.08);
+  display:flex;
+  flex-direction:column;
+  transition:0.25s;
+}
+.article-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 18px 40px rgba(0,0,0,0.12);
+}
+
+.article-img{
+  height:220px;
+  background-size:cover;
+  background-position:center;
+}
+
+.article-content{
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.article-tag{
+  display:inline-block;
+  background:rgba(45,80,22,0.1);
+  color:var(--green-1);
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.article-title{
+  margin:0;
+  font-size:20px;
+  color:var(--green-1);
+  font-weight:900;
+}
+.article-desc{
+  margin:0;
+  color:#555;
+  font-size:14px;
+}
+.article-date{
+  font-size:13px;
+  color:rgba(0,0,0,0.5);
+}
+
+.read-more{
+  margin-top:10px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  font-weight:700;
+  color:var(--accent);
+}
+.read-more i{
+  transition:0.3s;
+}
+.read-more:hover i{
+  transform:translateX(5px);
+}
+
+</style>
+{% endblock 'css' %}
+
+{% block 'body' %}
+
+<!-- HERO -->
+<section class="articles-hero container reveal">
+  <h1>Mahaan Articles & Insights</h1>
+  <p>Dive into knowledge about mushrooms, organic farming, sustainable export practices, international standards, supply-chain methods and more.</p>
+</section>
+
+<!-- ARTICLES GRID -->
+<section class="container reveal">
+  <div class="articles-grid">
+
+    {% for i in articles %}
+      <div class="article-card">
+      <a href="/article/{{i.slug}}" style="text-decoration: none;">
+      <div class="article-img" style="background-image:url('{{ i.thumbnail.url }}');"></div>
+      <div class="article-content">
+        <h3 class="article-title">{{i.title}}</h3>
+        <p class="article-desc">{{i.descripton}}</p>
+        <div class="article-date">Published: {{i.created_on}}</div>
+        <a href="/article/{{i.slug}}" class="read-more">Read More <i class="fa fa-arrow-right"></i></a>
+      </div>
+      </a>
+    </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+{% endblock 'body' %}

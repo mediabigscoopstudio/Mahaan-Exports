@@ -1,0 +1,149 @@
+{% extends "main/base.html" %}
+{% block 'title' %}Thank You — Mahaan Exports{% endblock 'title' %}
+
+{% block 'body' %}
+
+<style>
+    :root{
+      --green-1:#2D5016;
+      --green-2:#3A6B35;
+      --cream:#F5E6D3;
+      --accent-orange:#FF8C42;
+      --accent-gold:#FDB833;
+      --radius:14px;
+      --ease:cubic-bezier(.2,.9,.3,1);
+    }
+
+    .thankyou-wrapper{
+        min-height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Background Wave Pattern */
+    .thankyou-bg{
+        position:absolute;
+        inset:0;
+        z-index:-1;
+        background-image:
+            url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1400' height='400' viewBox='0 0 1440 320'><path fill='%23EBD7BD' fill-opacity='0.45' d='M0,224L80,218.7C160,213,320,203,480,202.7C640,203,800,213,960,197.3C1120,181,1280,139,1360,117.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z'></path></svg>");
+        background-size: cover;
+        opacity:0.6;
+        mix-blend-mode: multiply;
+    }
+
+    /* Card */
+    .thank-card{
+        background:white;
+        padding:30px 32px;
+        border-radius: var(--radius);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        max-width:600px;
+        text-align:center;
+        animation: fadeIn 0.8s var(--ease);
+    }
+
+    /* Check Icon */
+    .thank-icon{
+        width:80px;
+        height:80px;
+        border-radius:50%;
+        background:linear-gradient(135deg,var(--accent-orange),var(--accent-gold));
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:white;
+        font-size:36px;
+        margin: 0 auto 20px;
+        box-shadow:0 6px 20px rgba(253,184,51,0.25);
+        animation: popIn 0.6s var(--ease);
+    }
+
+    h1{
+        margin:0;
+        color:var(--green-1);
+        font-size:32px;
+        font-weight:800;
+    }
+
+    p{
+        margin:10px 0 0;
+        color:#444;
+        font-size:16px;
+    }
+
+    .thank-buttons{
+        margin-top:20px;
+        display:flex;
+        justify-content:center;
+        gap:12px;
+        flex-wrap:wrap;
+    }
+
+    .btn-main{
+        padding:10px 18px;
+        background:linear-gradient(90deg,var(--accent-orange),var(--accent-gold));
+        color:white;
+        border-radius:12px;
+        text-decoration:none;
+        font-weight:700;
+        box-shadow:0 8px 20px rgba(253,184,51,0.2);
+        transition:transform 0.3s var(--ease);
+    }
+
+    .btn-main:hover{
+        transform:translateY(-3px);
+    }
+
+    .btn-secondary{
+        padding:10px 18px;
+        border-radius:12px;
+        border:2px solid rgba(45,80,22,0.08);
+        background:none;
+        color:var(--green-1);
+        font-weight:700;
+        text-decoration:none;
+        transition:transform 0.3s var(--ease);
+    }
+
+    .btn-secondary:hover{ transform:translateY(-3px); }
+
+    @keyframes fadeIn{
+        from{ opacity:0; transform:translateY(20px); }
+        to{ opacity:1; transform:none; }
+    }
+
+    @keyframes popIn{
+        0%{ transform:scale(0.5); opacity:0; }
+        100%{ transform:scale(1); opacity:1; }
+    }
+
+</style>
+
+<section class="thankyou-wrapper">
+
+    <div class="thankyou-bg"></div>
+
+    <div class="thank-card">
+        <div class="thank-icon">
+            <i class="fa fa-check"></i>
+        </div>
+
+        <h1>Thank You!</h1>
+        <p>Your enquiry has been successfully submitted.</p>
+        <p>Our team at <strong>Mahaan Exports</strong> will get back to you shortly.</p>
+
+        <div class="thank-buttons">
+            <a href="/" class="btn-main">Back to Home</a>
+            <a href="/products" class="btn-secondary">Explore Products</a>
+        </div>
+    </div>
+
+</section>
+
+{% endblock 'body' %}

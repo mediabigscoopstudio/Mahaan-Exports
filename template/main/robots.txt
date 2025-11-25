@@ -1,0 +1,87 @@
+User-agent: *
+Allow: /
+
+# --- Major Search Engines ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+
+# --- AI Crawlers (Important for visibility + LLM indexing) ---
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+# OpenAI new web crawler
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Google AI / Gemini
+User-agent: Google-Extended
+Allow: /
+
+# Amazon / Olympus (for Amazon AI)
+User-agent: Amazonbot
+Allow: /
+
+# **New Apple AI Crawler**
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Applebot
+Allow: /
+
+# Scale AI
+User-agent: CCBot
+Allow: /
+
+# Facebook/Meta AI Crawler
+User-agent: FacebookBot
+Allow: /
+
+# HuggingFace
+User-agent: HuggingFaceBot
+Allow: /
+
+# Common LLM/Research Crawlers
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: FaveBot
+Allow: /
+User-agent: Bytespider
+Allow: /
+User-agent: SemrushBot
+Allow: /
+User-agent: AhrefsBot
+Allow: /

@@ -1,0 +1,157 @@
+{% extends "main/base.html" %}
+{% block 'title' %}Contact Mahaan Exports – Send Enquiries for Oyster Mushrooms & Moringa Powder{% endblock 'title' %}
+{% block 'meta' %}
+<!-- Primary SEO Meta Tags -->
+<meta name="description" content="Get in touch with Mahaan Exports for enquiries related to Oyster Mushrooms, Moringa Powder, herbs, and spices. Contact our export team for quotations, bulk orders, and partnership opportunities.">
+<meta name="keywords" content="Contact Mahaan Exports, Export enquiry India, Mushroom export enquiry, Moringa Powder enquiry, Supplier contact India, exporter contact form">
+<meta name="author" content="Mahaan Exports Pvt Ltd">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mahaanexports.com/enquiry">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/static/main/images/Vector.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/main/images/Vector.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mahaanexports.com/enquiry">
+<meta property="og:title" content="Contact Mahaan Exports – Export Enquiries for Oyster Mushroom & Moringa Powder">
+<meta property="og:description" content="Reach out to Mahaan Exports for bulk orders, export enquiries, pricing, and business partnerships.">
+<meta property="og:image" content="/static/main/image/brandplate.webp">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://mahaanexports.com/enquiry">
+<meta name="twitter:title" content="Enquiry – Contact Mahaan Exports">
+<meta name="twitter:description" content="Submit your enquiry for Oyster Mushrooms, Moringa Powder, herbs, and spices. Our export team will respond promptly.">
+<meta name="twitter:image" content="/static/main/image/brandplate.webp">
+
+<!-- Schema.org JSON-LD: Contact Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Mahaan Exports",
+  "url": "https://mahaanexports.com/enquiry",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Mahaan Exports Pvt Ltd",
+    "url": "https://mahaanexports.com/",
+    "logo": "https://mahaanexports.com/static/main/images/Vector.png",
+    "description": "Mahaan Exports is a leading exporter of Oyster Mushrooms, Moringa Powder, herbs, and spices from India.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Support",
+      "availableLanguage": ["English"],
+      "areaServed": "Worldwide"
+    },
+    "image": "https://mahaanexports.com/static/main/image/brandplate.webp"
+  }
+}
+</script>
+{% endblock 'meta' %}
+{% block 'css' %}
+<style>
+    .contact-grid {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+/* LEFT FORM */
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+    max-width: 48%;
+}
+
+/* RIGHT IMAGE */
+.contact-image {
+    flex: 1;
+    min-width: 300px;
+    max-width: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width: 900px) {
+    .contact-grid {
+        flex-direction: column;
+    }
+    .contact-form, 
+    .contact-image {
+        max-width: 100%;
+    }
+}
+
+</style>
+{% endblock 'css' %}
+{% block 'body' %}
+<section class="container" style="margin-top:40px;">
+
+  <!-- GRID WRAPPER -->
+  <div class="contact-grid reveal">
+
+    <!-- LEFT: FORM -->
+    <div class="card contact-form">
+      <h2 style="margin:0 0 10px; color:#2D5016;">Request Quote</h2>
+      <p style="margin:0 0 16px; color:rgba(43,43,43,0.75);">
+        Reach out to us for enquiries, bulk orders or export partnerships.
+      </p>
+
+      <form method="POST" action="">
+        {% csrf_token %}
+
+        <label style="font-weight:700; font-size:14px;">Full Name</label>
+        <input name="full_name" required type="text"
+          style="width:100%; padding:10px; border-radius:10px; 
+          border:1px solid rgba(45,80,22,0.1); margin-bottom:12px;" placeholder="Enter Full name">
+
+        <label style="font-weight:700; font-size:14px;">Email</label>
+        <input name="email" required type="email"
+          style="width:100%; padding:10px; border-radius:10px; 
+          border:1px solid rgba(45,80,22,0.1); margin-bottom:12px;" placeholder="Enter Email ID">
+
+        <label style="font-weight:700; font-size:14px;">Phone Number</label>
+        <input name="phone" required type="text"
+          style="width:100%; padding:10px; border-radius:10px; 
+          border:1px solid rgba(45,80,22,0.1); margin-bottom:12px;" placeholder="Enter Phone Number">
+
+        <input type="hidden" value="Website Enquiry" name="category" >
+        <label style="font-weight:700; font-size:14px;">Message / Requirements</label>
+        <textarea name="message" required rows="4"
+          style="width:100%; padding:10px; border-radius:10px; 
+          border:1px solid rgba(45,80,22,0.1); margin-bottom:18px;">Explain your Requirements</textarea>
+
+        <button type="submit"
+          style="padding:10px 18px; border:none; border-radius:10px;
+          background:linear-gradient(90deg,#FF8C42,#FDB833); color:white; font-weight:700;">
+          Submit Enquiry
+        </button>
+
+      </form>
+    </div>
+
+    <!-- RIGHT: IMAGE -->
+    <div class="contact-image">
+      <img src="/static/main/images/Contact.webp"
+           alt="Mahaan Exports Contact Image">
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock 'body' %}
