@@ -58,7 +58,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ("title", "meta_title", "meta_description", "category__title")
     prepopulated_fields = {"slug": ("title",)}
 
-    readonly_fields = ("thumbnail_preview")
+    readonly_fields = ("thumbnail_preview",)
 
     fieldsets = (
         ("Basic Info", {
@@ -87,7 +87,6 @@ class ProductAdmin(admin.ModelAdmin):
         }),
     )
 
-    # Thumbnail preview in admin
     def thumbnail_preview(self, obj):
         if obj.thumbnail:
             return format_html(
@@ -95,7 +94,7 @@ class ProductAdmin(admin.ModelAdmin):
                 obj.thumbnail.url
             )
         return "No Image"
-    
+
     thumbnail_preview.short_description = "Thumbnail"
 
 
