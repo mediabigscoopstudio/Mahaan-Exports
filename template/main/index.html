@@ -92,6 +92,7 @@
     }
 }
 </style>
+<link rel="stylesheet" href="/static/main/css/gallery.css" >
 {% endblock 'css' %}
 {% block 'body' %}
 <!-- HERO -->
@@ -499,6 +500,86 @@
 
 </section>
 
+<!-- GALLERY SECTION -->
+<section class="container reveal" style="margin-top:60px;">
+
+  <!-- Title -->
+  <div class="section-title" style="text-align:center;">
+    <h2 style="color:#2D5016; font-size:34px; font-weight:900;">
+      Gallery — Our Farms, Facilities & Products
+    </h2>
+    <p style="max-width:760px; margin:10px auto 0; font-size:16px; color:#2b2b2b;">
+      A glimpse into the world of <strong>Mahaan Exports</strong> — sustainable mushroom cultivation, 
+      modern packing units, organic herb farms and export-ready product lines.
+    </p>
+  </div>
+
+  <!-- FILTER BUTTONS -->
+  <div class="gallery-filters" style="margin-top:20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+    <button class="gal-btn active" data-filter="all">All</button>
+    <button class="gal-btn" data-filter="facility">Facilities</button>
+    <button class="gal-btn" data-filter="farming">Farming</button>
+    <button class="gal-btn" data-filter="products">Products</button>
+    <button class="gal-btn" data-filter="packing">Packing & Sorting</button>
+    <button class="gal-btn" data-filter="team">Team</button>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <div class="gallery-grid" id="galleryGrid" 
+       style="display:grid; gap:18px; margin-top:30px; grid-template-columns:1fr 1fr;">
+
+    <!-- SAMPLE IMAGES (YOU WILL REPLACE THESE FILE PATHS) -->
+
+    <!-- Facility -->
+    <div class="gal-item" data-category="facility">
+      <img src="/static/main/images/facility1.webp" alt="Facility" class="gal-img">
+    </div>
+
+    <div class="gal-item" data-category="facility">
+      <img src="/static/main/images/facility2.webp" alt="Facility" class="gal-img">
+    </div>
+
+    <!-- Farming -->
+    <div class="gal-item" data-category="farming">
+      <img src="/static/main/images/farming1.webp" alt="Farming" class="gal-img">
+    </div>
+
+    <div class="gal-item" data-category="farming">
+      <img src="/static/main/images/farming2.webp" alt="Farming" class="gal-img">
+    </div>
+
+    <!-- Products -->
+    <div class="gal-item" data-category="products">
+      <img src="/static/main/images/products1.webp" alt="Products" class="gal-img">
+    </div>
+
+    <div class="gal-item" data-category="products">
+      <img src="/static/main/images/products2.webp" alt="Products" class="gal-img">
+    </div>
+
+    <!-- Packing -->
+    <div class="gal-item" data-category="packing">
+      <img src="/static/main/images/packing1.webp" alt="Packing" class="gal-img">
+    </div>
+
+    <div class="gal-item" data-category="packing">
+      <img src="/static/main/images/packing2.webp" alt="Packing" class="gal-img">
+    </div>
+
+    <!-- Team -->
+    <div class="gal-item" data-category="team">
+      <img src="/static/main/images/team1.webp" alt="Team" class="gal-img">
+    </div>
+
+    <div class="gal-item" data-category="team">
+      <img src="/static/main/images/team2.webp" alt="Team" class="gal-img">
+    </div>
+
+  </div>
+
+</section>
+
+
     <!-- WHY CHOOSE US -->
     <section id="services" class="container reveal">
       <div class="section-title">
@@ -617,5 +698,50 @@
         </form>
       </div>
     </section>
+  
+<script>
+// GALLERY FILTERS
+const buttons = document.querySelectorAll('.gal-btn');
+const items = document.querySelectorAll('.gal-item');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    let filter = btn.getAttribute('data-filter');
+
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    items.forEach(item => {
+      if (filter === "all" || item.getAttribute('data-category') === filter) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  });
+});
+
+// LIGHTBOX
+let lightbox = document.createElement('div');
+lightbox.id = 'lightbox';
+document.body.appendChild(lightbox);
+
+const galleryImages = document.querySelectorAll('.gal-img');
+
+galleryImages.forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.innerHTML = '';
+    lightbox.style.display = 'flex';
+    let full = document.createElement('img');
+    full.src = img.src;
+    lightbox.appendChild(full);
+  });
+});
+
+lightbox.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+</script>
+
 {% endblock 'body' %}
 {% block 'script' %}{% endblock 'script' %}
