@@ -66,7 +66,7 @@ def product(request,slug):
 
 def products(request):
     categories = Category.objects.filter(status='active')
-    products = Product.objects.filter(status='active')
+    products = Product.objects.all().order_by("created_on")
 
     return render(request, "main/products/products.html", {
         "categories": categories,

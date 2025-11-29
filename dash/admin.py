@@ -58,7 +58,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ("title", "meta_title", "meta_description", "category__title")
     prepopulated_fields = {"slug": ("title",)}
 
-    readonly_fields = ("created_on", "thumbnail_preview")
+    readonly_fields = ("thumbnail_preview")
 
     fieldsets = (
         ("Basic Info", {
