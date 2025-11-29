@@ -61,7 +61,38 @@
 }
 </script>
 {% endblock 'meta' %}
-{% block 'css' %}{% endblock 'css' %}
+{% block 'css' %}
+<style>
+  /* Center title + description on all devices */
+.section-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Ensure spacing is clean */
+.section-title h2 {
+    margin: 0;
+    line-height: 1.2;
+}
+
+.section-title p {
+    margin-top: 12px;
+}
+
+/* Mobile: stack nicely with padding */
+@media (max-width: 768px) {
+    .section-title {
+        padding: 0 16px;
+    }
+    .section-title h2 {
+        font-size: 28px !important;
+    }
+    .section-title p {
+        font-size: 15px;
+    }
+}
+</style>
+{% endblock 'css' %}
 {% block 'body' %}
 <!-- HERO -->
 <section class="hero container" aria-labelledby="hero-heading">
