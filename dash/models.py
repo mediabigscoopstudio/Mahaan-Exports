@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.utils import timezone
 
 class Enquiry(models.Model):
     full_name = models.CharField(max_length=255)
@@ -72,7 +73,7 @@ class Product(models.Model):
 
     slug = models.SlugField(unique=True, max_length=255)
 
-    created_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
 
     class Meta:
